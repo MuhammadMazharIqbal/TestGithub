@@ -1,0 +1,57 @@
+
+package webscrapper;
+import java.io.*;
+import java.util.concurrent.TimeUnit;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+public class WebScrapper
+{
+	public WebDriver driver = new FirefoxDriver();
+
+	public void openTestSite() 
+        {
+		driver.navigate().to("http://www.shophive.com/apple/mac");
+        	}
+
+	
+	public void gettext(String pname, String pprice) 
+	      {
+
+	 java.util.List<WebElement>productNames = driver.findElements(By .xpath("//div/div/h2/a"));
+                 for(int i=0;i<productNames.size()-1;i++)
+        {
+            System.out.println("product Name"+ productNames.get(i).getText());
+        }
+		
+	 java.util.List<WebElement>productprice = driver.findElements(By .xpath("//div[1]/div/span"));
+        
+        for(int i=0;i<productprice.size()-1;i++)
+        {
+            System.out.println("product Price"+ productprice.get(i).getText());
+            
+        }
+        }
+
+	public void closeBrowser()
+        {
+                 System.out.println("\t\t\t++++++++++++++++++++++++++++++++++++++++");
+		             driver.close();
+       	}
+
+	public static void main(String[] args) throws IOException
+        {
+	           	WebScrapper webSrcapper = new WebScrapper();
+	           	webSrcapper.gettext();
+              webSrcapper.openTestSite();
+		          webSrcapper.closeBrowser();
+	       }
+private void gettext() {
+               throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+}
+
